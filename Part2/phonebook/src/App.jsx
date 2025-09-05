@@ -91,18 +91,29 @@ const App = () => {
       return;
     }
 
-    personService.create(newContact).then((returnedData) => {
-      setPersons(persons.concat(returnedData));
-      setMessage({
-        text: `Added ${returnedData.name}`,
-        type: "success",
+    personService
+      .create(newContact)
+      .then((returnedData) => {
+        setPersons(persons.concat(returnedData));
+        setMessage({
+          text: `Added ${returnedData.name}`,
+          type: "success",
+        });
+        setTimeout(() => {
+          setMessage({ text: null, type: null });
+        }, 5000);
+        setNewName("");
+        setNewNumber("");
+      })
+      .catch((error) => {
+        setMessage({
+          text: error.response.data.error,
+          type: "error",
+        });
+        setTimeout(() => {
+          setMessage({ text: null, type: null });
+        }, 5000);
       });
-      setTimeout(() => {
-        setMessage({ text: null, type: null });
-      }, 5000);
-      setNewName("");
-      setNewNumber("");
-    });
   };
 
   const personsToShow = persons.filter(
