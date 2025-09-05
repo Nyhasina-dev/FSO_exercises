@@ -1,0 +1,19 @@
+post http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name": "Jojo",
+    "number": "1215654165"
+}
+
+###
+GET http://localhost:3001/api/persons
+
+###
+put http://localhost:3001/api/persons/68b2d78879ad25a19beccd03
+Content-Type: application/json
+
+{
+    "name": "Jojo",
+    "number": "123456789"
+}
